@@ -44,17 +44,16 @@ span  {
     width: 100%; box-sizing: border-box;
 }
 .card img {
-    width: 100%; height: auto;
+    width: 100%; height: auto; border-radius: 10px;
 }
-
+.carga {
+    background-color: whitesmoke; width: 200px; height: 300px;
+}
 @media (max-width: 780px) {
     header {
-        height: 70vh; gap: 20px; padding-bottom: 30px;
+        height: 80vh; gap: 20px; padding-bottom: 30px;
         padding-top: 30px;
         background-image: url("fondo\ \ celular.jpg");
-    }
-    .imagen img {
-        width: 60%;
     }
     .card {
         font-size: smaller; width: 150px;
@@ -63,5 +62,6 @@ span  {
         width: 70%; text-align: center; margin: 0 auto;
     }
     .imagen {width: 100%;}
+    .imagen img {width: 60%;}
     .landpage {width: 100%; padding: 30px;}
 }
