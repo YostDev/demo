@@ -31,10 +31,15 @@
             
             function limpiarLinkDrive(link) {
                 if (link.includes("drive.google.com")) {
-                        const id = link.split("/d/")[1].split("/")[0];
-                        return `https://lh3.googleusercontent.com/u/0/d/${id}`;
+                    try {
+                         const id = link.split("/d/")[1].split("/")[0];
+                         return `https://drive.google.com/uc?export=view&id=${id}`;
+                    } catch (error) {
+                        return `burger.png`;
+                    }   
+                   
                 }
-                return link; // Si no es de Drive, lo deja igual
+                return link || `burger.png`;
             }
             
             async function obtenerDatos() {
