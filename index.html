@@ -14,14 +14,15 @@
             <div class="landpage">
                 <h1>Bienvenido a mi negocio</h1>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, voluptate. Doloribus, quisquam. Voluptas, voluptate. Doloribus, quisquam. Voluptas, voluptate. Doloribus, quisquam. Voluptas, voluptate. Doloribus, quisquam.
+                    En esta pagina de prueba podra ver el sistema de modificacion de productos, donde usted maneja que mostrar en tu web, facil, rapido y sencillo
                 </p>
                 <button href="#menu">Ver menu</button>
             </div>
         </header>
         <br><br>
         <section class="menu" id="menu">
-            
+            <div class="carga"></div> <div class="carga"></div>
+            <div class="carga"></div> <div class="carga"></div>
         </section>
 
         
@@ -37,6 +38,13 @@
                     const filas = datos.split("\n")
                     menu.innerHTML = "";
 
+                    function validarImagen(link) {
+                        if (!link || link.trim() === "" || link === "undefined") {
+                            return "burger.png"; // Tu imagen por defecto
+                        }
+                        return link.trim(); // Devuelve el link directo de PostImages
+                    }
+
                     for (let i= 1; i < filas.length; i++){
                         const columnas = filas[i].split(",");
 
@@ -46,12 +54,11 @@
                             titulo: columnas[0],
                             precio: columnas[1],
                             descripcion: columnas[2],
-                            imagen: columnas[3]
+                            imagen: validarImagen(columnas[3])
                         };
-
                         menu.innerHTML += `
                             <div class="card">
-                                <img src="${producto.imagen}" alt="Hamburguesa">
+                                <img src="${producto.imagen}" onerror="this.onerror=null; this.src='burger.png';" alt="${producto.titulo}">
                                 <h2>${producto.titulo}</h2>
                                 <span>${producto.precio}</span>
                                 <p>${producto.descripcion}</p>    
