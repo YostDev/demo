@@ -29,19 +29,6 @@
             const url ="https://docs.google.com/spreadsheets/d/e/2PACX-1vSqv2mdcOKuFyFdfnP2aYLT5yW-aUuLMEyyIAl9mh5sn2WftMU-CiUhKyWBXvT7xn3NNjwyJeBriZOn/pub?output=csv";
             const menu = document.querySelector(".menu");
             
-            function limpiarLinkDrive(link) {
-                if (link.includes("drive.google.com")) {
-                    try {
-                         const id = link.split("/d/")[1].split("/")[0];
-                         return `https://drive.google.com/uc?export=view&id=${id}`;
-                    } catch (error) {
-                        return `burger.png`;
-                    }   
-                   
-                }
-                return link || `burger.png`;
-            }
-            
             async function obtenerDatos() {
                 try {
                     const respuesta = await fetch(url);
@@ -59,7 +46,7 @@
                             titulo: columnas[0],
                             precio: columnas[1],
                             descripcion: columnas[2],
-                            imagen: limpiarLinkDrive(columnas[3])
+                            imagen: columnas[3]
                         };
 
                         menu.innerHTML += `
