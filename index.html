@@ -16,7 +16,7 @@
                 <p>
                     En esta pagina de prueba podra ver el sistema de modificacion de productos, donde usted maneja que mostrar en tu web, facil, rapido y sencillo
                 </p>
-                <button href="#menu">Ver menu</button>
+                <button href="#menu" class="button">Ver menu</button>
             </div>
         </header>
         <br><br>
@@ -60,9 +60,9 @@
                             <div class="card">
                                 <img src="${producto.imagen}" onerror="this.onerror=null; this.src='burger.png';" alt="${producto.titulo}">
                                 <h2>${producto.titulo}</h2>
-                                <span>${producto.precio}</span>
+                                <span>$${producto.precio}</span>
                                 <p>${producto.descripcion}</p>    
-                                <button>Comprar</button>
+                                <button class="buttondos">Comprar</button>
                             </div>
                         `;
                     };
