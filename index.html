@@ -28,7 +28,13 @@
         <script>
             const url ="https://docs.google.com/spreadsheets/d/e/2PACX-1vSqv2mdcOKuFyFdfnP2aYLT5yW-aUuLMEyyIAl9mh5sn2WftMU-CiUhKyWBXvT7xn3NNjwyJeBriZOn/pub?output=csv";
             const menu = document.querySelector(".menu");
-
+            function limpiarLinkDrive(link) {
+                if (link.includes("drive.google.com")) {
+                        const id = link.split("/d/")[1].split("/")[0];
+                        return `https://lh3.googleusercontent.com/u/0/d/${id}`;
+                }
+                return link; // Si no es de Drive, lo deja igual
+            }
             async function obtenerDatos() {
                 try {
                     const respuesta = await fetch(url);
@@ -45,7 +51,8 @@
                         const producto = {
                             titulo: columnas[0],
                             precio: columnas[1],
-                            descripcion: columnas[2]
+                            descripcion: columnas[2],
+                            imagen: limpiarLinkDrive(link)
                         };
 
                         menu.innerHTML += `
