@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Demo</title>
+</head>
+<body>
+        <header>
+            <div class="imagen">
+                <img src="burger.png" alt="Imagen de comida">
+            </div>
+            <div class="landpage">
+                <h1>Bienvenido a mi negocio</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, voluptate. Doloribus, quisquam. Voluptas, voluptate. Doloribus, quisquam. Voluptas, voluptate. Doloribus, quisquam. Voluptas, voluptate. Doloribus, quisquam.
+                </p>
+                <button href="#menu">Ver menu</button>
+            </div>
+        </header>
+        <br><br>
+        <section class="menu" id="menu">
+            
+        </section>
+
+        
+        <script>
+            const url ="https://docs.google.com/spreadsheets/d/e/2PACX-1vSqv2mdcOKuFyFdfnP2aYLT5yW-aUuLMEyyIAl9mh5sn2WftMU-CiUhKyWBXvT7xn3NNjwyJeBriZOn/pub?output=csv";
+            const menu = document.querySelector(".menu");
+
+            async function obtenerDatos() {
+                try {
+                    const respuesta = await fetch(url);
+                    const datos = await respuesta.text();
+
+                    const filas = datos.split("\n")
+                    menu.innerHTML = "";
+
+                    for (let i= 1; i < filas.length; i++){
+                        const columnas = filas[i].split(",");
+
+                        if (columnas.length < 2) continue;
+
+                        const producto = {
+                            titulo: columnas[0],
+                            precio: columnas[1],
+                            descripcion: columnas[2]
+                        };
+
+                        menu.innerHTML += `
+                            <div class="card">
+                                <img src="burger.png" alt="Hamburguesa">
+                                <h2>${producto.titulo}</h2>
+                                <span>${producto.precio}</span>
+                                <p>${producto.descripcion}</p>    
+                                <button>Comprar</button>
+                            </div>
+                        `;
+                    };
+
+
+                } catch (error) {
+                    menu.innerHTML = "<p>Error al cargar el menú. Por favor, inténtalo de nuevo más tarde.</p>";
+                }
+            }
+
+            obtenerDatos();
+        </script>
+</body>
+</html>
